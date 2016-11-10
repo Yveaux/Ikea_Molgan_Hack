@@ -15,7 +15,8 @@ Hacked features
 ========
 * Atmel ATmega328P microntroller, compatible with Arduino Pro-Mini
 * nRF24L01+ 2.4GHz radio module (not WiFi!)
-* Default sketch implemnents a [MySensors][1] enabled motion sensor
+* Optional ATSHA204 CryptoAthentication chip
+* Default sketch implements a [MySensors][1] enabled motion sensor
 * Serial connector for programming sketches
 * ISP for programming the ATmega directly
 * LED light function can be removed, either partially or complete, to save battery power
@@ -107,6 +108,13 @@ Replace the batteries and plug the FTDI cable in your PC.
 
 Start the Arduino IDE and load the [sketch][5].
 Change target board to 'Arduino Pro or Pro Mini' and set processor to 'ATmeag328 (3.3V, 8MHz)'.
+
+The sketch will sleep until woken by a motion trigger from the Molgan, or wake up once every 24 hours to check battery level.
+It will send a V_TRIPPED message to the gateway and measures the battery level.
+For this it uses my [Vcc library][6], whcih should be installed in the IDE.
+After a short blind time (set to 30 sec default) the motion sensor is sensitive to triggers again.
+This blind time prevents the motion sensor from spamming the gateway with tripped-messages. This time can also be set in hardware (by resistor R11), but software allows for easier tweaking.
+
 Tune the sketch to your liking and upload the sketch.
 
 [1]: https://www.mysensors.org
@@ -114,3 +122,4 @@ Tune the sketch to your liking and upload the sketch.
 [3]: https://www.arduino.cc/en/Tutorial/ArduinoISP
 [4]: https://github.com/arduino/Arduino/blob/master/hardware/arduino/avr/bootloaders/atmega/ATmegaBOOT_168_atmega328_pro_8MHz.hex
 [5]: https://raw.githubusercontent.com/Yveaux/Ikea_Molgan_Hack/master/src/MotionSensor.ino
+[6]: https://github.com/Yveaux/Arduino_Vcc

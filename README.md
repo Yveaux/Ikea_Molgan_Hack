@@ -115,6 +115,8 @@ For this it uses my [Vcc library][6], whcih should be installed in the IDE.
 After a short blind time (set to 30 sec default) the motion sensor is sensitive to triggers again.
 This blind time prevents the motion sensor from spamming the gateway with tripped-messages. This time can also be set in hardware (by resistor R11), but software allows for easier tweaking.
 
+The onboard LED is used as a Tx indication by the MySensors library.
+
 Tune the sketch to your liking and upload the sketch.
 
 [1]: https://www.mysensors.org
